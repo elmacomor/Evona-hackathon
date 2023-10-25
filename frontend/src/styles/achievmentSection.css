@@ -1,0 +1,6 @@
+.achievement-section {
+    background-image: url(../assets/background.jpg);
+    display: flex;
+    flex-direction: row;
+    flex: 100%;
+}

@@ -1,0 +1,199 @@
+@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@900&family=Raleway:wght@200;400;700&display=swap");
+
+* {
+  font-family: "Poppins";
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100%;
+  height: auto;
+  background-image: url(/src/assets/background.jpg);
+  background-size: cover;
+}
+
+.wrapper1 {
+  width: 100%;
+  height: 100%;
+  background-image: url(/src/assets/background.jpg);
+  background-size: cover;
+}
+
+.box {
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  flex-direction: column;
+  height: 65%;
+  width: 1%;
+}
+
+.box .TO-JE-TAJ-BUTTON {
+  width: 100%;
+  height: 250%;
+  max-width: 640px;
+  box-sizing: border-box;
+  padding: 20px;
+  background: #000000b7;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-field input {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  height: 50px;
+  margin: 5px;
+  display: flex;
+  background-color: #d9d9d9;
+  justify-content: center;
+  outline: none;
+  /* Remove the default focus outline */
+  align-items: center;
+  padding-left: 10px;
+  /* Adjust the padding-left as needed */
+}
+
+.box .SIGN-IN-OBJEKAT {
+  width: 100%;
+}
+
+.checkmark {
+  border: 5px solid rgb(110, 206, 220);
+  border-radius: 100%;
+  width: 100%;
+  height: auto;
+  margin: 10px;
+  /* Adjust the margin to control the spacing */
+  padding: 5px;
+  box-shadow: none;
+}
+
+.text-wrapper {
+  margin: 50px;
+}
+
+.input-field {
+  width: 70%;
+  display: flex;
+  align-items: center;
+}
+
+input::placeholder {
+  text-align: left;
+  font-weight: 600;
+  color: #767676;
+}
+
+input {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  height: 45px;
+  margin: 10px;
+  display: flex;
+  background-color: #d9d9d9;
+  justify-content: center;
+  align-items: center;
+}
+
+.label {
+  color: #ffffff;
+  font-size: 18px;
+  width: 65%;
+  margin-bottom: 10px;
+  text-align: center;
+  margin-top: 25px;
+}
+
+.box .overlap-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.box .text-wrapper {
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.box .text-wrapper-2,
+.box .text-wrapper-3 {
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 18px;
+  width: 75%;
+  margin-bottom: 20px;
+}
+
+.text-wrapper p {
+  font-family: "Big Shoulders Display", sans-serif;
+}
+
+.box .rectangle,
+.box .div {
+  width: 100%;
+  max-width: 400px;
+  height: 50px;
+  background-color: #d9d9d9;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.box .div-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #6ecedc;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 200px;
+  height: 60px;
+  /* Increased height for the button */
+}
+
+.div-wrapper {
+  cursor: pointer;
+  transition: 0.3s;
+  margin: 25px;
+}
+
+.div-wrapper:hover {
+  background-color: white;
+}
+
+.text-wrapper-4:hover {
+  color: black;
+}
+
+.text-wrapper p {
+  font-size: 60px;
+}
+
+.box .text-wrapper-4 {
+  font-weight: bolder;
+  color: #2d6067;
+  font-size: 20px;
+  text-align: center;
+  align-items: center;
+  white-space: nowrap;
+}
+
+
+@media (max-width: 768px) {
+  .box {
+    padding: 10px;
+  }
+}

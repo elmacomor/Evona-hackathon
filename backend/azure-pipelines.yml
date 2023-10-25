@@ -1,0 +1,85 @@
+# ASP.NET Core
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+  branches:
+    include:
+      - master
+
+jobs:
+- job: PrepareComposeFile
+  pool:
+    name: Default
+    demands: 'Agent.OS -equals Windows_NT'
+
+  variables:
+    Version.MajorMinor: 1.0
+    Version.Revision: $[counter(variables['Version.MajorMinor'], 0)]
+    versionNumber: '$(version.MajorMinor).$(version.Revision)'
+    
+  steps:
+  - script: echo %Action%%BuildVersion%
+    displayName: 'Set build version'
+    env:
+      Action: '##vso[build.updatebuildnumber]'
+      BuildVersion: $(versionNumber)
+  - task: CopyFiles@2
+    displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+    inputs:
+      Contents: |
+        **/*.env
+        **/docker-compose*.yml
+        **/.docker/*.*
+        **/.docker/**/*.*
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'
+      CleanTargetFolder: true
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
+
+- job: BuildContainer
+  dependsOn: PrepareComposeFile
+  pool:
+    name: Default
+    demands:
+    - docker
+    - 'Agent.OS -equals Linux'
+
+  strategy:
+    matrix:
+      hack2023-api:
+        DropItemName: 'hack2023-api'
+        DockerFile: 'Evona.Hackathon.Api/Dockerfile'
+        BuildContext: '$(Build.SourcesDirectory)/'
+      hack2023-web:
+        DropItemName: 'hack2023-web'
+        DockerFile: 'Evona.Hackathon.WebSimulator/.docker/Dockerfile'
+        BuildContext: '$(Build.SourcesDirectory)/Evona.Hackathon.WebSimulator/'
+
+  steps:
+  - task: Docker@2
+    displayName: build
+    inputs:
+      containerRegistry: 'Local Proxy Registry'
+      repository: '$(DropItemName)'
+      command: build
+      Dockerfile: '$(DockerFile)'
+      buildContext: '$(BuildContext)'
+      tags: |
+       $(Build.BuildNumber)
+       latest
+      arguments: '--build-arg BUILD_BUILDNUMBER=$(Build.BuildNumber)'
+
+  - task: Docker@2
+    displayName: push
+    inputs:
+      containerRegistry: 'Local Proxy Registry'
+      repository: '$(DropItemName)'
+      command: push
+      tags: |
+       $(Build.BuildNumber)
+       latest

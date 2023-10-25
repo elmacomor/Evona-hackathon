@@ -1,0 +1,33 @@
+.achievement-bar {
+    flex: 70%;
+    padding: 1.5rem;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+}
+
+.bar-level {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.level-bar {
+    width: 300px;
+    height: 5px;
+    background-color: #00E0DB;
+    margin: 0 1rem;
+}
+
+.level-number {
+    color: #00E0DB;
+    margin-top: 1rem;
+}
